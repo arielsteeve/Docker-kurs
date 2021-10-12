@@ -1,0 +1,21 @@
+version: '1'
+services:
+  web:
+    image: php:apache
+    environment:
+      USERNAME:pozos
+      PASSWORD: pozos
+    depends-on:
+      -api
+    ports:
+      -"5000":"5000"
+    volumes:
+      -web-data:/var/www/html
+  api:
+    image: pozos
+    volumes:
+      -api-data:/data/student_data.json
+    port: 5000
+volumes:
+  web-data
+  api-data
