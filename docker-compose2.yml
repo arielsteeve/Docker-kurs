@@ -8,13 +8,13 @@ services:
     depends-on:
       - api
     ports:
-      -"8080:8080"
+      - "8080:8080"
     volumes:
       - website: /var/www/html
   api:
     image: pozos-api
     ports:
-      -"5000:5000"
+      - "5000:5000"
     volumes:
       - student_age: /data/student_data.json
 volumes:
