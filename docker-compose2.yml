@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  web:
+    image: php:apache
+    environment:
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+    depends-on:
+      - api
+    ports:
+      -"8080:8080"
+    volumes:
+      #- website: /var/www/html
+      - type: volume
+        source: website
+        target: /var/www/html
+        volume:
+          nocopy: true
+  api:
+    image: pozos-api
+    ports:
+      -"5000:5000"
+    volumes:
+      #- student_age.json: /data/student_data.json
+      - type: volume
+        source: student_age.json
+        target: /data/student_data.json
+        volume:
+          nocopy: true
+volumes:
+  student_age.json
+  website
