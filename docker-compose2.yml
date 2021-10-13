@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3'
 services:
   web:
     image: php:apache
@@ -10,23 +10,13 @@ services:
     ports:
       -"8080:8080"
     volumes:
-      #- website: /var/www/html
-      - type: volume
-        source: website
-        target: /var/www/html
-        volume:
-          nocopy: true
+      - website: /var/www/html
   api:
     image: pozos-api
     ports:
       -"5000:5000"
     volumes:
-      #- student_age.json: /data/student_data.json
-      - type: volume
-        source: student_age.json
-        target: /data/student_data.json
-        volume:
-          nocopy: true
+      - student_age: /data/student_data.json
 volumes:
-  student_age.json
+  student_age
   website
